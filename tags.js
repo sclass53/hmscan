@@ -17,4 +17,11 @@ function e(){
         skg.innerHTML=wyu;
     }
 }
+function resetData(){
+    if(confirm("确定清空数据?")==true){
+        localStorage.setItem("hmscannerdat","{}");
+        e();
+        console.log("Cleared");
+    }
+}
 document.addEventListener("DOMContentLoaded",e);

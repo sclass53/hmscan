@@ -9,7 +9,7 @@ function toList(st){
 }
 
 function writeK(st){
-    const sname=`hmscanner${st}`;
+    const sname=`${st}`;
     if(!window.localStorage){
         alert("浏览器不支持localstorage!");
     }else{
@@ -27,7 +27,7 @@ function writeK(st){
 }
 
 function readK(st){
-    const sname=`hmscanner${st}`;
+    const sname=`${st}`;
     if(!window.localStorage){
         alert("浏览器不支持localstorage!");
         return -1;
@@ -44,6 +44,8 @@ function Xupload(){
         if(ut>=10)ar.push(nowK[x]);
     }if(ar.length!=0){
         alert(`提示: \n\n你已经做了很多 ${ar.join(',')} 的题目了,换一些题目做吧!`)
+    }else{
+        alert('上传成功!');
     }
 }
 
