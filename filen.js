@@ -1,5 +1,6 @@
 const tok="pat_lxlFBra1XGfDvbGLbELzhbE9C1OcSyBZolRQL7Yn4DpXTuZQKwF4tAapB7RoR7h3"
 const DBNAME="hmscannerdat";
+const DCNAME="hmscannerdax"
 var nowK=null;
 
 function toList(st){
@@ -32,7 +33,39 @@ function readK(st){
         alert("浏览器不支持localstorage!");
         return -1;
     }else{
-        return JSON.parse(localStorage.getItem(DBNAME))[sname];
+        const jn=JSON.parse(localStorage.getItem(DBNAME));
+        if(sname in jn)return JSON.parse(localStorage.getItem(DBNAME))[sname];
+        else return -1;
+    }
+}
+
+function writeC(st){
+    const sname=`${st}`;
+    if(!window.localStorage){
+        alert("浏览器不支持localstorage!");
+    }else{
+        if(localStorage.getItem(DCNAME)==null){
+            localStorage.setItem(DCNAME,"{}");
+        }
+        var sjs=JSON.parse(localStorage.getItem(DCNAME));
+        if(sname in sjs){
+            sjs[sname]+=1;
+        }else{
+            sjs[sname]=1;
+        }
+        localStorage.setItem(DCNAME,JSON.stringify(sjs));
+    }
+}
+
+function readC(st){
+    const sname=`${st}`;
+    if(!window.localStorage){
+        alert("浏览器不支持localstorage!");
+        return -1;
+    }else{
+        const jn=JSON.parse(localStorage.getItem(DCNAME));
+        if(sname in jn)return JSON.parse(localStorage.getItem(DCNAME))[sname];
+        else return -1;
     }
 }
 
@@ -41,9 +74,21 @@ function Xupload(){
     for(var x=0;x<nowK.length;x++){
         writeK(nowK[x]);
         var ut=readK(nowK[x]);
-        if(ut>=10)ar.push(nowK[x]);
+        if(ut>=15)ar.push(nowK[x]);
     }if(ar.length!=0){
-        alert(`提示: \n\n你已经做了很多 ${ar.join(',')} 的题目了,换一些题目做吧!`)
+        alert(`提示: \n\n你已经做了很多 ${ar.join(',')} 的题目了, 换一些题目做吧!`);
+    }else{
+        alert('上传成功!');
+    }
+}
+function Cupload(){
+    var ar=new Array();
+    for(var x=0;x<nowK.length;x++){
+        writeC(nowK[x]);
+        var ut=readC(nowK[x]);
+        if(ut>=15)ar.push(nowK[x]);
+    }if(ar.length!=0){
+        alert(`提示: \n\n你已经做了很多 ${ar.join(',')} 的题目了, 换一些题目做吧!`);
     }else{
         alert('上传成功!');
     }
@@ -104,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             txt.innerHTML="照片似乎不是一道题目!";
         }else{
             nowK=toList(resp);
-            txt.innerHTML=`<button class='hbutton' onclick='Xupload();'>上传</button><br>${toList(resp).join('\n')}`;
+            txt.innerHTML=`<button class='hbutton' onclick='Xupload();'>做对了</button><button class='hbutton' onclick='Cupload();'>做错了</button><br>${toList(resp).join('\n')}`;
         }
     });
 

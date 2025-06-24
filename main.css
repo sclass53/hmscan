@@ -18,8 +18,8 @@ body {
 .data-container{
     display: flex;
     justify-content: center;
-    padding: 10px 10px 10px 10px;
-    margin-top: 20px;
+    padding: 0;
+    margin-top: 10px;
 }
 .tbutton {
     padding: 10px 20px;
@@ -45,7 +45,7 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 11px;
     transition: background-color 0.3s;
 }
 .tbutton:hover {
@@ -90,4 +90,14 @@ body {
 }
 #problemInfo {
     margin: 5px 15px 5px 15px;
+}
+table{
+    font-size:smaller;
+}
+th,td{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.lcol{
+    padding-right: 10px;
 }
