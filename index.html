@@ -4,78 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>题目知识点提取</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            max-width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 100%;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-        }
-        .tbutton {
-            padding: 12px 24px;
-			margin-left: 5px;
-			margin-right: 5px;
-
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        .tbutton:hover {
-            background-color: #0056b3;
-        }
-        #fileInput {
-            display: none;
-        }
-        #infoContainer {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #dee2e6;
-            max-width: 100%;
-        }
-        #fileName {
-            font-weight: bold;
-            margin-bottom: 10px;
-            word-break: break-all;
-        }
-        #previewContainer {
-            display: none;
-            max-width: 100%;
-            margin-top: 15px;
-            text-align: center;
-        }
-        #previewImage {
-            max-width: 100%;
-            max-height: 70vh;
-            display: block;
-            margin: 0 auto;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-        .file-info {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #495057;
-        }
-		#problemInfo {
-			margin: 5px 15px 5px 15px;
-		}
-    </style>
+    <link rel="stylesheet" href="./main.css"/>
 </head>
 <body>
     <div class="container">
@@ -83,6 +12,7 @@
         <div class="button-container">
             <button id="selectButton" class="tbutton">选择照片</button>
 			<button id="upload" class="tbutton">分析</button>
+			<button class="tbutton" onclick="location.href='./tags.html'">查看知识点</button>
             <input type="file" id="fileInput" accept="image/*">
         </div>
         
