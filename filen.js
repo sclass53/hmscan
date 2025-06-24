@@ -61,7 +61,7 @@ async function getPhoto() {
     var canvas = document.querySelector('#camera-canvas');
     //获取 `canvas`元素，根据`cameraVideo`中的数据进行图片绘制 `ctx.drawImage()`；
     var ctx = canvas.getContext('2d');
-    ctx.drawImage(cameraVideo, 0, 0, 300, 300);
+    ctx.drawImage(cameraVideo, 0, 0);
     //将 `canvas`绘制的图片信息，展示在 `img`标签中；
     photo.src=canvas.toDataURL("image/jpg");
     const imageBlob = dataURLtoBlob(photo.src);
