@@ -29,8 +29,8 @@ function openCamera() {
                 ideal: 1080,
                 max: 1440,
             },
+            facingMode: "environment"
         },
-        facingMode: "environment"
     }
     var mediaPromise = navigator.mediaDevices.getUserMedia(constraints);
     mediaPromise.then(function(stream) {
