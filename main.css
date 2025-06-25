@@ -101,3 +101,17 @@ table{
 .lcol{
     padding-right: 10px;
 } */
+#opbtn{
+    background-color:#6c757d;
+    position: fixed;
+    bottom: 20%;
+    float: left;
+    border: none;
+    width: 20px;
+    height: 40px;
+    border-radius: 0;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-right: 5px;
+    padding-left: 5px;
+}

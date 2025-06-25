@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(imageID);
         
 
-        hd.append("Access-Control-Allow-Origin",true);
         var bres=await fetch('https://hmscannerserver.netlify.app/.netlify/functions/getproblem',{
             method: 'POST',
             headers: hd,

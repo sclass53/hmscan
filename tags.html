@@ -3,18 +3,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>知识点列表</title>
-    <head><link rel="stylesheet" href="./main.css"/><script src="./tags.js"></script><script src="./boot/bootstrap.min.js"></script><link rel="stylesheet" href="./boot/bootstrap.min.css"/></head>
+    <head>
+        <link rel="stylesheet" href="./main.css"/><script src="./tags.js"></script><script src="./boot/bootstrap.bundle.min.js"></script><link rel="stylesheet" href="./boot/bootstrap.min.css"/>
+        <script id="MathJax-script" async src="./boot/tex-chtml.js"></script>
+    </head>
     <body>
+        <button id="opbtn" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">></button>
+        <div class="container">
         <br>
-        <div class="container-fluid btn-group">
+        <div class="container btn-group">
             <button class="btn btn-secondary" onclick='resetData();'>清除</button>
             <button class="btn btn-primary" onclick="e();">刷新</button>
             <button class="btn btn-primary" onclick="location.href='./index.html';">去做题</button>
-            <button class="btn btn-outline-success" onclick=";">出道题</button>
+            <button class="btn btn-outline-success" onclick="makeProblem();" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">出道题</button>
+        </div>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-backdrop="static">
+        <div class="offcanvas-header">
+            <h3 class="offcanvas-title" id="offcanvasExampleLabel">出道题</h3>
+            &nbsp;&nbsp;&nbsp;
+            <div id="probcontent">
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="container">
+            <div id="uic">
+            
+            </div>
+            <br>
+            <p id="poc"></p>
+            </div>
+        </div>
         </div>
         <br>
         <br>
         <div id="kl" class="container"> 
+        </div>
         </div>
     </body>
 </html>
