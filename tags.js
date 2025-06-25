@@ -108,14 +108,14 @@ function e(){
     uic=document.getElementById("uic");
     spck=document.getElementById("probcontent");
     poc=document.getElementById("poc");
-    var skg=document.getElementById("kl");
+    var skg=document.getElementById("klkk");
     //console.log(document.getElementById("kl"));
     if(localStorage.getItem(DBNAME)==null)localStorage.setItem(DBNAME,"{}");
     if(localStorage.getItem(DCNAME)==null)localStorage.setItem(DCNAME,"{}");
 
     if(localStorage.getItem(DBNAME)==null && localStorage.getItem(DCNAME)==null){
         skg.innerHTML="暂无知识点, 快去上传题目吧!"
-    }else if(localStorage.getItem(DBNAME)=="{}" && localStorage.getItem(DBNAME)=="{}"){
+    }else if(localStorage.getItem(DBNAME)=="{}" && localStorage.getItem(DCNAME)=="{}"){
         skg.innerHTML="暂无知识点, 快去上传题目吧!"
     }else{
         const yub=JSON.parse(localStorage.getItem(DBNAME));
