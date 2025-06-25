@@ -80,6 +80,7 @@ function Xupload(){
     }else{
         alert('上传成功!');
     }
+    location.href="./index.html";
 }
 function Cupload(){
     var ar=new Array();
@@ -92,6 +93,7 @@ function Cupload(){
     }else{
         alert('上传成功!');
     }
+    location.href="./index.html";
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -118,7 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         var txt = document.getElementById("problemInfo");
-        txt.innerText="Loading...";
+        txt.innerHTML=`<p class="placeholder-glow">
+      <span class="placeholder col-3"></span><br>
+      <span class="placeholder col-4"></span>
+      <span class="placeholder col-6"></span>
+      <span class="placeholder col-8"></span>
+    </p>`;
         const formData = new FormData();
         formData.append('file', imblob, 'resolveimage.jpg');
 
@@ -149,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
             txt.innerHTML="照片似乎不是一道题目!";
         }else{
             nowK=toList(resp);
-            txt.innerHTML=`<button class='hbutton' onclick='Xupload();'>做对了</button><button class='hbutton' onclick='Cupload();'>做错了</button><br>${toList(resp).join('\n')}`;
+            txt.innerHTML=`<div class='btn-group'><button class='btn btn-success btn-sm' onclick='Xupload();'>做对了</button><button class='btn btn-danger btn-sm' onclick='Cupload();'>做错了</button></div><br><br>${toList(resp).join('<br>')}`;
         }
     });
 

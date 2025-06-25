@@ -3,15 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>知识点列表</title>
-    <head><script src="./tags.js"></script><link rel="stylesheet" href="./main.css"/></head>
+    <head><link rel="stylesheet" href="./main.css"/><script src="./tags.js"></script><script src="./boot/bootstrap.min.js"></script><link rel="stylesheet" href="./boot/bootstrap.min.css"/></head>
     <body>
-        <div class="button-container">
-            <button class="tbutton" onclick='resetData();'>Reset Data</button>
-            <button class="tbutton" onclick="e();">Refresh</button>
+        <br>
+        <div class="container btn-group" style="justify-content: center;">
+            <button class="btn btn-secondary" onclick='resetData();'>清除</button>
+            <button class="btn btn-primary" onclick="e();">刷新</button>
+            <button class="btn btn-primary" onclick="location.href='./index.html';">去做题</button>
+            <button class="btn btn-outline-success" onclick=";">出道题</button>
         </div>
         <br>
-        <div id="kl" class="data-container">
-
+        <br>
+        <div id="kl" class="container"> 
         </div>
     </body>
 </html>

@@ -23,6 +23,26 @@ function readC(st){
         else return -1;
     }
 }
+
+function writeK(st){
+    const sname=`${st}`;
+    if(!window.localStorage){
+        alert("浏览器不支持localstorage!");
+    }else{
+        if(localStorage.getItem(DBNAME)==null){
+            localStorage.setItem(DBNAME,"{}");
+        }
+        var sjs=JSON.parse(localStorage.getItem(DBNAME));
+        if(sname in sjs){
+            sjs[sname]+=1;
+        }else{
+            sjs[sname]=1;
+        }
+        localStorage.setItem(DBNAME,JSON.stringify(sjs));
+    }
+}
+
+
 function e(){
     var skg=document.getElementById("kl");
     //console.log(document.getElementById("kl"));
@@ -37,7 +57,7 @@ function e(){
         const yub=JSON.parse(localStorage.getItem(DBNAME));
         const yuc=JSON.parse(localStorage.getItem(DCNAME));
         var stu=new Set();
-        var wyu="<table><tr><th class='lcol'>知识点</th><th>正确率</th><th>正确数</th><th>错误数</th></tr>";
+        var wyu="<table class='table'><tr><th class='lcol'>&nbsp;&nbsp;知识点</th><th>正确率</th><th>√</th><th>x</th></tr>";
         var tot=0;
         for(var key in yub){
             stu.add(key);
@@ -50,9 +70,9 @@ function e(){
             var sb=readK(val);
             var sc=readC(val);
             console.log(val,sb,sc);
-            if(sb==-1)wyu+=`<tr><td class="lcol">${val}</td><td>0%</td><td>0</td><td>${sc}</td></tr>`;
-            else if(sc==-1)wyu+=`<tr><td class="lcol">${val}</td><td>100%</td><td>${sb}</td><td>0</td></tr>`;
-            else wyu+=`<tr><td class="lcol">${val}</td><td>${Math.round((sb)*1000.0/(sb+sc))/10.0}%</td><td>${sb}</td><td>${sc}</td></tr>`;
+            if(sb==-1)wyu+=`<tr><td class="lcol"><input name="copt" type="checkbox" value="${val}">&nbsp;${val}</input></td><td>0%</td><td>0</td><td>${sc}</td></tr>`;
+            else if(sc==-1)wyu+=`<tr><td class="lcol"><input name="copt" type="checkbox" value="${val}">&nbsp;${val}</input></td><td>100%</td><td>${sb}</td><td>0</td></tr>`;
+            else wyu+=`<tr><td class="lcol"><input name="copt" type="checkbox" value="${val}">&nbsp;${val}</input></td><td>${Math.round((sb)*1000.0/(sb+sc))/10.0}%</td><td>${sb}</td><td>${sc}</td></tr>`;
         }
         /*
         var val=yu[key];
