@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>题目知识点提取</title>
-    <link rel="stylesheet" href="./boot/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./boot/bootstrap.min.css" />
     <script src="./boot/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" href="./main.css"/>
+    <link rel="stylesheet" href="./main.css" />
+    <script id="MathJax-script" async src="./boot/tex-chtml.js"></script>
 </head>
+
 <body>
     <div class="container">
-        <div class="container-fluid"><h1 style="justify-content: center;display: flex;margin: 20px 20px 20px 20px;">知识点提取</h1></div>
+        <div class="container-fluid">
+            <h1 style="justify-content: center;display: flex;margin: 20px 20px 20px 20px;">知识点提取</h1>
+        </div>
         <div class="container btn-group">
             <button id="selectButton" class="btn btn-primary">拍照</button>
-			<button id="upload" class="btn btn-primary">分析</button>
-			<button class="btn btn-info" onclick="location.href='./tags.html'">知识点</button>
+            <button class="btn btn-outline-primary" onclick="location.href='./tags.html'">知识点</button>
         </div>
         <input type="file" id="fileInput" accept="image/*" style="display:none;">
         <br><br>
         <div id="infoContainer">
             <div id="fileName">未选择文件</div>
             <div id="previewContainer">
+                <div class="container-fluid" id="spncont">
+                    <button id="upload" class="btn btn-outline-primary" style="display: none;">分析</button>
+                    <div class="spinner-border text-secondary" id="spn" role="status" style="display: none;"><span class="visually-hidden">Loading...</span></div>
+                </div>
                 <img id="previewImage" alt="图片预览" class="card-img-top">
                 <div class="file-info">
-                    <span id="fileSize"></span> | 
-                    <span id="fileType"></span> | 
+                    <span id="fileSize"></span> |
+                    <span id="fileType"></span> |
                     <span id="fileDimensions"></span>
                 </div>
             </div>
         </div>
         <br>
-		<div id="problemInfo">未分析题目</div>
+        <div id="problemInfo">未分析题目</div>
     </div>
 
     <script src="./filen.js"></script>
 </body>
+
 </html>
