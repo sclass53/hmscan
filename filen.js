@@ -125,12 +125,13 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         var txt = document.getElementById("problemInfo");
-        txt.innerHTML = `<p class="placeholder-glow">
-      <span class="placeholder col-3"></span><br>
-      <span class="placeholder col-4"></span>
-      <span class="placeholder col-6"></span>
-      <span class="placeholder col-8"></span>
-    </p>`;
+        txt.innerHTML = `
+<p class="placeholder-glow">
+    <span class="placeholder col-3"></span><br>
+    <span class="placeholder col-4"></span>
+    <span class="placeholder col-6"></span>
+    <span class="placeholder col-8"></span>
+</p>`;
         spn.setAttribute("style", "");
         const formData = new FormData();
         formData.append('file', imblob, 'resolveimage.jpg');

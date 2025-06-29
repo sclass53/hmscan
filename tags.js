@@ -18,6 +18,13 @@ function readK(st) {
     }
 }
 
+function togSolution() {
+    var butn = document.getElementById("solution");
+    var tst = butn.getAttribute("style");
+    if (tst == "display: none;") butn.setAttribute("style", "");
+    else butn.setAttribute("style", "display: none;");
+}
+
 function readC(st) {
     const sname = `${st}`;
     if (!window.localStorage) {
@@ -53,6 +60,8 @@ async function makeProblem() {
     //console.log(spck,uic);
     if (checkboxes.length == 0) {
         uic.innerText = "你好像还没有选择知识点哦!"
+        poc.innerText = "";
+        spck.innerHTML = "";
     } else {
         uic.innerHTML = "<h6>出题中...</h6>";
         poc.innerHTML = `<p class="placeholder-glow">
@@ -62,24 +71,17 @@ async function makeProblem() {
       <span class="placeholder col-9"></span><br>
       <span class="placeholder col-8"></span>
     </p>`
+
         var st = `
         <div class="dropdown">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                查看知识点...
-            </button>
-            <br>
             <ul class="dropdown-menu">`
-            //     <li><a class="dropdown-item" href="#">Action</a></li>
-            //     <li><a class="dropdown-item" href="#">Another action</a></li>
-            //     <li><a class="dropdown-item" href="#">Something else here</a></li>
-            // </ul>
-            // </div>
+
         var oli = [];
         for (var i = 0; i < checkboxes.length; i++) {
             st += `<li><span class='dropdown-item'>${checkboxes[i].getAttribute("value")}</span></li>`;
             oli.push(checkboxes[i].getAttribute("value"));
         }
-        st += "</ul></div>";
+        st += `</ul></div>`;
         spck.innerHTML = st;
         var hd = new Headers();
         hd.append('Authorization', `Bearer ${tok}`)
@@ -96,7 +98,29 @@ async function makeProblem() {
             uic.innerHTML = "<h6>网络好像有点问题, 请刷新页面!</h6>";
             return;
         }
-        poc.innerText = bres;
+        var lbi = bres.split('题解换行');
+        poc.innerHTML = lbi[0];
+        console.log(lbi[1]);
+        poc.innerHTML += `
+<br><br>
+<div class="alert alert-info" role="alert" id="solution" style="display: none;">
+  <h5 class="alert-heading">题解</h4>
+  <hr>
+  <p>${window.md.render(lbi[1].replaceAll('_','\\_').replaceAll('\(','\\(').replaceAll('\)','\\)'))}</p>
+</div>`;
+
+        spck.innerHTML += `
+<button 
+    class="btn btn-secondary btn-sm dropdown-toggle" 
+    type="button" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false"
+    >查看知识点...
+</button>&nbsp;
+<button class="btn btn-sm btn-primary" onclick="togSolution();">
+    题解
+</button>`;
+
         window.MathJax.typesetPromise();
         uic.innerHTML = "<h6>...出题完毕!</h6>";
     }
@@ -120,7 +144,14 @@ function e() {
         const yub = JSON.parse(localStorage.getItem(DBNAME));
         const yuc = JSON.parse(localStorage.getItem(DCNAME));
         var stu = new Set();
-        var wyu = "<table class='table'><tr><th class='lcol'>&nbsp;&nbsp;知识点</th><th>正确率</th><th>√</th><th>x</th></tr>";
+        var wyu = `
+<table class='table'>
+    <tr>
+        <th class='lcol'>&nbsp;&nbsp;知识点</th>
+        <th>正确率</th>
+        <th>√</th>
+        <th>x</th>
+    </tr>`;
         var tot = 0;
         for (var key in yub) {
             stu.add(key);
@@ -138,10 +169,6 @@ function e() {
             else if (sc == -1) wyu += `<tr><td class="lcol"><input name="copt" type="checkbox" value="${val}">&nbsp;${val}</input></td><td>100%</td><td>${sb}</td><td>0</td></tr>`;
             else wyu += `<tr><td class="lcol"><input name="copt" type="checkbox" value="${val}">&nbsp;${val}</input></td><td>${Math.round((sb)*1000.0/(sb+sc))/10.0}%</td><td>${sb}</td><td>${sc}</td></tr>`;
         }
-        /*
-        var val=yu[key];
-        wyu+=`<tr><td>${key}</td><td>${val}</td></tr>`;
-        */
         wyu += "</table>";
         skg.innerHTML = wyu;
     }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./main.css" />
     <script src="./tags.js"></script>
     <script src="./boot/bootstrap.bundle.min.js"></script>
+    <script src="./boot/markdown-it.min.js"></script>
     <link rel="stylesheet" href="./boot/bootstrap.min.css" />
     <script id="MathJax-script" async src="./boot/tex-mml-chtml.js"></script>
     <script>
@@ -20,6 +21,9 @@
                 ]
             }
         };
+        window.md = new markdownit({
+            linkify: false
+        });
     </script>
 </head>
 
@@ -51,6 +55,7 @@
                 </div>
             </div>
         </div>
+
         <br>
         <br>
         <div id="klkk" class="container">
