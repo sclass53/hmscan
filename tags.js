@@ -98,7 +98,7 @@ async function makeProblem() {
             uic.innerHTML = "<h6>网络好像有点问题, 请刷新页面!</h6>";
             return;
         }
-        var lbi = bres.split('题解换行');
+        var lbi = bres.split('题解');
         poc.innerHTML = lbi[0].replaceAll("题目", "").replaceAll("###", "");
         console.log(lbi[1]);
         poc.innerHTML += `
