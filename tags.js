@@ -99,7 +99,7 @@ async function makeProblem() {
             return;
         }
         var lbi = bres.split('题解换行');
-        poc.innerHTML = lbi[0];
+        poc.innerHTML = lbi[0].replaceAll("题目", "").replaceAll("###", "");
         console.log(lbi[1]);
         poc.innerHTML += `
 <br><br>
