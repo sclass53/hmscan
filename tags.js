@@ -106,7 +106,12 @@ async function makeProblem() {
 <div class="alert alert-info" role="alert" id="solution" style="display: none;">
   <h5 class="alert-heading">题解</h4>
   <hr>
-  <p>${window.md.render(lbi[1].replaceAll('_','\\_').replaceAll('\(','\\(').replaceAll('\)','\\)'))}</p>
+  <p>${window.md.render(lbi[1]
+        .replaceAll('_','\\_')
+        .replaceAll('\(','\\(')
+        .replaceAll('\)','\\)')
+        .replaceAll('\]','\\]')
+        .replaceAll('\[','\\['))}</p>
 </div>`;
 
         spck.innerHTML += `
