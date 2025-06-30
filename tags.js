@@ -113,6 +113,7 @@ async function makeProblem() {
 <br><br>
 <div class="alert alert-info" role="alert" id="solution" style="display: none;">
   <h5 class="alert-heading">
+        <span class="badge bg-info iconic">i</span>
     题解
     </h5>
   <hr>

@@ -96,8 +96,8 @@ mjx-math {
     white-space: normal;
 }
 
-#poc,
-#solute {
-    line-break: normal;
-    white-space: normal;
+.iconic {
+    font-family: 'Times New Roman', Times, serif !important;
+    border-radius: 50% !important;
+    opacity: 0.75;
 }
