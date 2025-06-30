@@ -5,6 +5,7 @@ var spck = null;
 var uic = null;
 var poc = null;
 var MathJax = null;
+var butn = null;
 
 function readK(st) {
     const sname = `${st}`;
@@ -19,7 +20,7 @@ function readK(st) {
 }
 
 function togSolution() {
-    var butn = document.getElementById("solution");
+    butn = document.getElementById("solution");
     var tst = butn.getAttribute("style");
     if (tst == "display: none;") butn.setAttribute("style", "");
     else butn.setAttribute("style", "display: none;");
@@ -84,7 +85,13 @@ async function makeProblem() {
         st += `</ul></div>`;
         spck.innerHTML = st;
         var hd = new Headers();
-        hd.append('Authorization', `Bearer ${tok}`)
+        hd.append('Authorization', `Bearer ${tok}`);
+        try {
+            butn = document.getElementById("solution");
+            butn.setAttribute("style", "display: none");
+        } catch {
+            console.log("Element not found!")
+        }
         try {
             var bres = await fetch('https://hmscannerserver.netlify.app/.netlify/functions/makeproblem', {
                 method: 'POST',
@@ -92,10 +99,11 @@ async function makeProblem() {
                 body: `${oli.join('\n')}`
             });
             bres = await bres.text();
+            //var bres = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa题解bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
         } catch {
             poc.innerText = "ERR...";
             MathJax.typeset();
-            uic.innerHTML = "<h6>网络好像有点问题, 请刷新页面!</h6>";
+            uic.innerHTML = "<h6>网络好像有点问题, 请刷新页面(目前处于测试阶段,大模型服务不稳定,敬请谅解!)!</h6>";
             return;
         }
         var lbi = bres.split('题解');
@@ -104,16 +112,19 @@ async function makeProblem() {
         poc.innerHTML += `
 <br><br>
 <div class="alert alert-info" role="alert" id="solution" style="display: none;">
-  <h5 class="alert-heading">题解</h4>
+  <h5 class="alert-heading">
+    题解
+    </h5>
   <hr>
-  <p>${window.md.render(lbi[1]
+  <p id='solute'>${window.md.render(lbi[1]
         .replaceAll('_','\\_')
         .replaceAll('\(','\\(')
         .replaceAll('\)','\\)')
         .replaceAll('\]','\\]')
         .replaceAll('\[','\\['))}</p>
 </div>`;
-
+        butn = document.getElementById("solution");
+        butn.setAttribute("style", "display: none;");
         spck.innerHTML += `
 <button 
     class="btn btn-secondary btn-sm dropdown-toggle" 
@@ -133,6 +144,7 @@ async function makeProblem() {
 
 function e() {
     console.log("loaded...")
+    butn = document.getElementById("solution");
     uic = document.getElementById("uic");
     spck = document.getElementById("probcontent");
     poc = document.getElementById("poc");

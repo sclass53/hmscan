@@ -91,3 +91,13 @@ table {
     width: 100%;
     border-radius: 20px;
 }
+
+mjx-math {
+    white-space: normal;
+}
+
+#poc,
+#solute {
+    line-break: normal;
+    white-space: normal;
+}
